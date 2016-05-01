@@ -1,0 +1,69 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+    <@layout.myLayout "Home page">
+
+
+    <div class="panel panel-primary" style="padding: 5%;">
+        <#list userResult as user>
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: center;">
+                        <h4>${user.full_name}</h4>
+                        <a href="/profile/view/${user.id}">
+                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/${user.id}.jpg"
+                                 alt="Profile picture">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <#else>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Oops!</strong> I don't know this guy. You could invite another Techie to join us!
+                </div>
+        </#list>
+    </div>
+
+    <#list postResult as post>
+        <div class="panel panel-primary" style="padding: 1%;">
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: left;">
+                        <a href="/profile/post_view/${post.id}">
+                        <h4>${post.content}</h4>
+                            </a>
+                        <p>${post.timestamp}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <#else>
+            <div class="panel panel-primary" style="padding: 1%;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Oops!</strong> I don't know this guy. You could invite another Techie to join us!
+                </div>
+            </div>
+    </#list>
+
+    <#list diary as diary>
+        <div class="panel panel-primary" style="padding: 5%;">
+
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: center;">
+                        <a href="/diary/${diary.id}">
+                            <h3>${diary.title}</h3>
+                        </a>
+                        <h4>${diary.content}</h4>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </#list>
+
+</@layout.myLayout>

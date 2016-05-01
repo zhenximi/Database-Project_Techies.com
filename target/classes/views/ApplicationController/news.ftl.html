@@ -1,0 +1,112 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "Home page">
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <form method="POST" action="/post/create">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="What's on your mind?" name="content">
+                <select name="permission">
+                    <option value="PUBLIC">everyone</option>
+                    <option value="FRIENDS">friends</option>
+                    <option value="FOF">friends of friends</option>
+                    <option value="PRIVATE">myself</option>
+                </select>
+                <span class="input-group-btn">
+
+                    <a href="/diary_create_view">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></button>
+                    </a>
+                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+            </div>
+        </form>
+
+        <form method="POST" enctype="multipart/form-data" action="/uploadPostImg">
+            <div class="input-group">
+                <input class="glyphicon glyphicon-camera"  type="file" name="postImg">
+                <select name="permission">
+                    <option value="PUBLIC">everyone</option>
+                    <option value="FRIENDS">friends</option>
+                    <option value="FOF">friends of friends</option>
+                    <option value="PRIVATE">myself</option>
+                </select>
+                <input type="submit" value="post image">
+            </div>
+        </form>
+    </div>
+</div>
+
+<#list posts as post>
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="/profile/view/${post.author.username}">
+                    <img class="media-object img-rounded avatar-64" src="/assets/img/general/${post.author.id}.jpg">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4>${post.author.full_name}</h4>
+                <#if post.datatype == 1>
+                    <img class="img-responsive" src="/assets/img/post/${post.id}.jpg">
+                 <#else>
+                <p>${post.content}</p>
+                </#if>
+                
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${post.timestamp}
+                <#list comments as comment>
+                    <#if comment.post_id == post.id>
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="/profile/view/${comment.author.id}">
+                                    <img class="media-object img-rounded avatar-48" src="/assets/img/general/${comment.author.id}.jpg">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4>${comment.author.full_name}</h4>
+                                <p>${comment.content}</p>
+                            </div>
+                        </div>
+                    </#if>
+                </#list>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <form method="POST" action="/post/comment">
+            <input type="hidden" name="post" value="${post.id}">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Write a comment..." name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+</#list>
+
+
+    <#list diarys as diary>
+        <div class="panel panel-primary" style="padding: 1%;">
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: left;">
+                        <a href="/diary/${diary.id}">
+                            <h3>${diary.title}</h3>
+                        </a>
+                        <h4>${diary.content}</h4>
+
+
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diary.timestamp}
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </#list>
+
+</@layout.myLayout>
