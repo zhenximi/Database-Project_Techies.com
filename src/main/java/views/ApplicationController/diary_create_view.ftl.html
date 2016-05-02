@@ -4,24 +4,21 @@
 
     <div class="panel panel-primary">
         <div class="panel-body">
-            <form method="POST" action="/diary_create">
-                <div class="input-group">
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class=".col-xs-6 .col-md-4">
+            <h4>Write A Diary</h4>
+            <form method="POST" id="diary" action="/diary_create">
+                <div class="input-group diary-padding">
+
                     <input type="text" class="form-control" placeholder="title" name="title"style="width: 810px;">
                     </div>
-                    </div>
-                    </div>
 
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="content" name="content" style="height:501px ;width:810px">
+
+                <div class="input-group diary-padding">
+                    <textarea type="text" class="form-control" placeholder="content" name="content" form="diary" style="height:501px ;width:810px"></textarea>
 
 
                 </div>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                    <button class="btn btn-default" type="submit">Publish</button>
                 </span>
             </form>
         </div>
