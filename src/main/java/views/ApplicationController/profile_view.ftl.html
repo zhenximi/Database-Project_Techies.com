@@ -3,7 +3,7 @@
 
     <div class="panel panel-primary panel-shadow">
         <div class="panel-body">
-            <a href="/profile/view"><img class="img-responsive img-circle center-block" src="/assets/img/general/icon-profile.png" alt="Profile picture"></a>
+            <a href="/profile/view"><img class="media-object img-rounded avatar-64" src="/assets/img/general/${profile.author.id}.jpg" alt="Profile picture"></a>
             <h2 class="text-center">
                 ${target.full_name}
             </h2>
@@ -40,8 +40,7 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="/profile">
-                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/icon-profile.png">
-                            </a>
+                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/${profile.author.id}.jpg">                            </a>
                         </div>
                         <div class="media-body">
                             <h4>${post.author.full_name}</h4>
@@ -54,8 +53,7 @@
                                     <div class="media" id="comment_${comment.id}">
                                         <div class="media-left media-middle">
                                             <a href="/profile/view/${comment.author.username}">
-                                                <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png">
-                                            </a>
+                                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/${comment.author.id}.jpg">                                            </a>
                                         </div>
                                         <div class="media-body">
                                             <h4>${comment.author.full_name}</h4>
@@ -87,8 +85,7 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="/profile/view/${diary.author.id}">
-                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/icon-profile.png">
-                            </a>
+                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/${diary.author.id}.jpg">                            </a>
                             <h4>${diary.author.full_name}</h4>
                         </div>
                         <div class="media-middle" style="text-align: left;">
@@ -104,8 +101,7 @@
                                     <div class="media">
                                         <div class="media-left media-middle">
                                             <a href="/profile/view/${diarycomment.author.username}">
-                                                <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png">
-                                            </a>
+                                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/${diary.author.id}.jpg">                                            </a>
                                         </div>
                                         <div class="media-body">
                                             <h4>${diarycomment.author.full_name}</h4>

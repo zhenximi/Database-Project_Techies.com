@@ -401,6 +401,7 @@ public class ApplicationController {
 
         return html;
     }
+    @Transactional
     @FilterWith(LoginFilter.class)
     public Result showdiary(@PathParam("diaryid") Long diary_id, Context context) {
         // Initial declarations
@@ -412,10 +413,10 @@ public class ApplicationController {
         //Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
 
         Diary diary = diaryDao.getDiaryFromSearchResult(diary_id);
-        List<DiaryComment> diaryComments=diaryComment.getCommentsBydiary(diary);
+        List<DiaryComment> diarycomments=diaryComment.getCommentsBydiary(diary);
         html.render("diary", diary);
 
-        html.render("diarycomments",diaryComments);
+        html.render("diarycomments",diarycomments);
         html.render("user", actualUser);
         html.render("friends", mutualFriends);
 

@@ -75,10 +75,9 @@ public class DiaryCommentDao {
         Query q = em.createQuery(strQuery);
         diarycomments = (List<DiaryComment>) q.getResultList();
 
-        if(diarycomments.size() ==1) {
+
             return diarycomments;
-        }
-        return null;
+
 
     }
 }
