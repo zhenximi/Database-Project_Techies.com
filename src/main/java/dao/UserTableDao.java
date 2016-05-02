@@ -33,7 +33,7 @@ public class UserTableDao {
                 return false;
             }
         }
-        return null;
+        return false;
     }
 
     @Transactional

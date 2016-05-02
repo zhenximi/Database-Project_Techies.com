@@ -61,7 +61,7 @@ public class MailController {
 //        mail.addBcc("bcc1@domain");
 //        mail.addBcc("bcc2@domain");
 
-        mail.setBodyHtml("<h1>" + actualUser.getUsername() + "want to be friend with you</h1>"+ "<a href=" + EMAIL_BODY + ">LOGIN TO CHECK OUT</a>");
+        mail.setBodyHtml("<h1>" + actualUser.getUsername() + " want to be friend with you</h1>"+ "<a href=" + EMAIL_BODY + ">LOGIN TO CHECK OUT</a>");
 
         mail.setBodyText("Test bodyText: Techies want to be nerds and friends.");
 
