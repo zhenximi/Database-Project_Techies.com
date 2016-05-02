@@ -3,7 +3,8 @@
 
     <div class="panel panel-primary panel-shadow">
         <div class="panel-body">
-            <a href="/profile/view"><img class="media-object img-rounded avatar-64" src="/assets/img/general/${profile.author.id}.jpg" alt="Profile picture"></a>
+            <a href="/profile/view"><div class="img-responsive img-circle center-block profile-avatar" <#noescape>style="background-image: url(/assets/img/general/${profile.author.id}.jpg)"></#noescape></div></a>
+
             <h2 class="text-center">
                 ${target.full_name}
             </h2>

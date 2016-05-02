@@ -26,6 +26,14 @@
 
 
 
+.profile-avatar {
+    width: 230px;
+    height: 230px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
 .m-pulse {
     position: absolute;
 }
@@ -437,3 +445,5 @@
     -webkit-user-select: none;
     z-index: auto
 }
+
+
