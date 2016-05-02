@@ -123,10 +123,9 @@ public class ApplicationController {
 
     @Transactional
     public Result login(@Param("email") String pEmail, @Param("secret") String pPassword, Context context) {
-        if("POST".equals(context.getMethod()))
-        {
-           UserTable canLogin = userTableDao.canLogin(pEmail, pPassword);
-
+        Boolean emailExist = userTableDao.emailExist(pEmail);
+        if (emailExist && "POST".equals(context.getMethod())) {
+            UserTable canLogin = userTableDao.canLogin(pEmail, pPassword);
             if (canLogin != null) {
                 EntityManager em = EntityManagerProvider.get();
 
@@ -136,10 +135,8 @@ public class ApplicationController {
                 return Results.redirect(Globals.PathMainPage);
             }
         } else {
-            //return Results.redirect(Globals.PathMainPage);
             return Results.html();
         }
-        //return Results.redirect(Globals.PathMainPage);
         return Results.redirect(Globals.PathRoot);
     }
 
@@ -325,7 +322,7 @@ public class ApplicationController {
 
                 if(relationship.getRelation_type() == RelationType.Friends.ordinal()) {
                     // Get mutual friends post
-                    List<Post> posts = postDao.getPostsFromUsers(new ArrayList<>(Arrays.asList(targetUser)));
+                    List<Post> posts = postDao.getPostsFromUsersWithPermission(new ArrayList<>(Arrays.asList(targetUser)), PermissionType.PRIVATE.getValue());
                     //List<Comment> comments
                     List<Comment> comments = commentDao.getCommentsByPosts(posts);
 
@@ -349,6 +346,8 @@ public class ApplicationController {
 
         return html;
     }
+
+    @Transactional
     @FilterWith(LoginFilter.class)
     public Result search_result(@Param("keyword") String keyword, Context context) {
         // Initial declarations
