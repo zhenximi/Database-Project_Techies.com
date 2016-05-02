@@ -9,20 +9,6 @@
                         <h1>${diary.title}</h1>
                         <h4>${diary.content}</h4>
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diary.timestamp}
-                        <#list diarycomments as diarycomment>
-                            <#if diarycomment.diary_id == diary.id>
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="/profile/view/${diarycomment.author.username}">
-                                            <img class="media-object img-rounded avatar-64" src="/assets/img/general/${diary.author.id}.jpg">                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>${diarycomment.author.full_name}</h4>
-                                        <p>${diarycomment.content}</p>
-                                    </div>
-                                </div>
-                            </#if>
-                        </#list>
                     </div>
                 </div>
             </div>

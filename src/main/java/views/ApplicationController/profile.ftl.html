@@ -12,7 +12,7 @@
                 <li href="#" class="list-group-item">
                     <div class="media">
                         <div class="media-left media-middle">
-                            <a href="/profile/view/${request.user_a.username}">
+                            <a href="/profile/view/${request.user_a.id}">
                                 <img class="media-object img-rounded avatar-48" src="/assets/img/general/${request.user_a.id}.jpg" alt="Profile picture">
                             </a>
                         </div>
@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-md-10 col-xs-8">
                                     <h4 class="media-heading">
-                                        <a href="/profile/view/${request.user_a.username}">
+                                        <a href="/profile/view/${request.user_a.id}">
                                             ${request.user_a.full_name}
                                         </a>
                                     </h4>

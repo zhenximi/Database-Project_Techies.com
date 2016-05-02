@@ -23,6 +23,27 @@
             </nav>
         </div>
     </div>
+    <div class="panel panel-primary" style="padding: 5%;">
+        <#list fof as user>
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: center;">
+                        <h4>${user.full_name}</h4>
+                        <a href="/profile/view/${user.id}">
+                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/${user.id}.jpg"
+                                 alt="Profile picture">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <#else>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    All of me loves all of you.
+                </div>
+        </#list>
+    </div>
     <div class="panel panel-primary">
         <div class="panel-body">
             <div class="media">
@@ -52,7 +73,7 @@
                                 <#if comment.post_id == post.id>
                                     <div class="media" id="comment_${comment.id}">
                                         <div class="media-left media-middle">
-                                            <a href="/profile/view/${comment.author.username}">
+                                            <a href="/profile/view/${comment.author.id}">
                                                 <img class="media-object img-rounded avatar-64" src="/assets/img/general/${comment.author.id}.jpg">                                            </a>
                                         </div>
                                         <div class="media-body">
@@ -100,7 +121,7 @@
                                 <#if diarycomment.diary_id == diary.id>
                                     <div class="media">
                                         <div class="media-left media-middle">
-                                            <a href="/profile/view/${diarycomment.author.username}">
+                                            <a href="/profile/view/${diarycomment.author.id}">
                                                 <img class="media-object img-rounded avatar-64" src="/assets/img/general/${diary.author.id}.jpg">                                            </a>
                                         </div>
                                         <div class="media-body">

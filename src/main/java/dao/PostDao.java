@@ -52,7 +52,7 @@ public class PostDao {
     public List<Post> getPostFromKeyword(String content) {
         List<Post> result = new ArrayList<>();
         EntityManager em = EntityManagerProvider.get();
-        Query q = em.createQuery("SELECT x FROM Post x WHERE content LIKE :keyword");
+        Query q = em.createQuery("SELECT x FROM Post x WHERE permission = 0 AND content LIKE :keyword");
         q.setParameter("keyword", "%" + content + "%");
         result = (List<Post>) q.getResultList();
         //System.out.println("+++++++++++++++++++++++++++search result: " + result.size());

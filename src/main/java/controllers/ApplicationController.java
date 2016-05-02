@@ -110,13 +110,14 @@ public class ApplicationController {
         html.render("comments", comments);
         html.render("friends", mutualFriends);
         List<Diary> diaries = new ArrayList<>();
-        List<DiaryComment> diaryComments=new ArrayList<>();
-        if(mutualFriends.size() != 0) {
-            diaries = diaryDao.getDiaryFromUsers(mutualFriends);
-            diaryComments=diaryComment.getCommentsByPosts(diaries);
-        }
-            html.render("diarys", diaries);
-            html.render("diarycomments",diaryComments);
+        List<DiaryComment> diaryComments = new ArrayList<>();
+        //show me and mutual friends' diaries
+        mutualFriends.add(actualUser);
+        diaries = diaryDao.getDiaryFromUsers(mutualFriends);
+        diaryComments=diaryComment.getCommentsByPosts(diaries);
+
+        html.render("diarys", diaries);
+        html.render("diarycomments",diaryComments);
         return html;
     }
 
@@ -305,6 +306,8 @@ public class ApplicationController {
         UserTable actualUser = userTableDao.getUserFromSession(context);
         UserTable targetUser = userTableDao.getUserFromUserid(userid);
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
+        List<UserTable> fOf = relationshipDao.getRelationList(targetUser, RelationType.Friends);
+
         Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
         Profile profile= profileDao.getProfileFromProfile(targetUser);
 
@@ -340,6 +343,7 @@ public class ApplicationController {
         html.render("user", actualUser);
         html.render("target", targetUser);
         html.render("friends", mutualFriends);
+        html.render("fof", fOf);
         html.render("disable_add", disable_add);
         html.render("profile",profile);
 

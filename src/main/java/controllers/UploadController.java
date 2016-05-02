@@ -63,9 +63,9 @@ public class UploadController {
     Lang lang;
 
 
-    private static final String PROFILE_IMG_DIRECTORY = "/Users/xi/Sites/DB-PROJECT/src/main/java/assets/img/general/";
+    private static final String PROFILE_IMG_DIRECTORY = "/Users/xi/Sites/Database-Project_Techies.com/src/main/java/assets/img/general/";
 
-    private static final String POST_IMG_DIRECTORY = "/Users/xi/Sites/DB-PROJECT/src/main/java/assets/img/post/";
+    private static final String POST_IMG_DIRECTORY = "/Users/xi/Sites/Database-Project_Techies.com/src/main/java/assets/img/post/";
 
     private static final String FILE_SURFIX = ".jpg";
 
