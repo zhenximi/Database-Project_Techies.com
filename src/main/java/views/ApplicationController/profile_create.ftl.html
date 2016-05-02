@@ -3,7 +3,7 @@
 
     <div class="panel panel-primary panel-shadow">
         <div class="panel-body">
-            <img class="media-object img-rounded avatar-64" src="/assets/img/general/${profile.author.id}.jpg" alt="Profile picture">
+            <a href="/profile/view"><div class="img-responsive img-circle center-block profile-avatar" <#noescape>style="background-image: url(/assets/img/general/${profile.author.id}.jpg)"></#noescape></div></a>
             <h2 class="text-center">
                 ${user.full_name}
             </h2>
@@ -16,14 +16,14 @@
 
     <div class="panel panel-primary">
         <div class="panel-body">
-            <div class="media">
-                <div class="media-body">
-                    <h2>${profile.birthday}</h2>
-                    <h3>${profile.gender}</h3>
-                    <h3>${profile.hobby}</h3>
-                    <h3>${profile.marital_status}</h3>
-                    <h3>${profile.work_place}</h3>
-                    <h3>${profile.helper}</h3>
+            <div class="panel panel-primary">
+                <div class="panel-body profile-info">
+                    <span class="col-sm-2 profile-label">Birthday:</span><span class="col-sm-10">${profile.birthday}</span>
+                    <span class="col-sm-2 profile-label">Gender:</span><span class="col-sm-10">${profile.gender}</span>
+                    <span class="col-sm-2 profile-label">Hobby:</span><span class="col-sm-10">${profile.hobby}</span>
+                    <span class="col-sm-2 profile-label">Marital Status:</span><span class="col-sm-10">${profile.marital_status}</span>
+                    <span class="col-sm-2 profile-label">Work Place:</span><span class="col-sm-10">${profile.work_place}</span>
+                    <span class="col-sm-2 profile-label">Fun Facts:</span><span class="col-sm-10">${profile.helper}</span>
                 </div>
             </div>
         </div>

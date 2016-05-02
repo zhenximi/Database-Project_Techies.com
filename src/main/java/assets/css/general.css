@@ -25,6 +25,13 @@
 }
 
 
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+
 
 .profile-avatar {
     width: 230px;
@@ -52,7 +59,21 @@
 }
 
 .header-theme {
-    background-image: linear-gradient(to bottom,#E3BBFF 0,#D191FF 100%);
+    background-image: linear-gradient(to bottom,#B400FF 0,#9400FF 100%);
+}
+
+.upload-profile-picture{
+    width: 1px;
+}
+
+.profile-info span{
+    padding:5px;
+
+}
+.profile-label {
+    text-transform: uppercase;
+    color: #A2AABD;
+    text-align: right;
 }
 
 .m-pulse {
