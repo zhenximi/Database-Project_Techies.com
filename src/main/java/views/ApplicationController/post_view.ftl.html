@@ -32,6 +32,7 @@
                                     </div>
                                     <div class="media-body">
                                         <h4>${comment.author.full_name}</h4>
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${comment.timestamp}
                                         <p>${comment.content}</p>
                                     </div>
                                 </div>
@@ -42,6 +43,17 @@
                 </div>
             </div>
 
+        </div>
+        <div class="panel-footer">
+            <form method="POST" action="/post/comment">
+                <input type="hidden" name="post" value="${post.id}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Write a comment..." name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                </div>
+            </form>
         </div>
 
 
