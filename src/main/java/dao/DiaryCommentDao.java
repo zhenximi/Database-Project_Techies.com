@@ -62,23 +62,23 @@ public class DiaryCommentDao {
     }
     public List<DiaryComment> getCommentsBydiary(Diary diary) {
 
-            EntityManager em = EntityManagerProvider.get();
+        EntityManager em = EntityManagerProvider.get();
 
 
-            List<DiaryComment> diarycomments = new ArrayList<>();
-            String strQuery = "SELECT x FROM DiaryComment x WHERE diary_id IN (";
+        List<DiaryComment> diarycomments = new ArrayList<>();
+        String strQuery = "SELECT x FROM DiaryComment x WHERE diary_id IN (";
 
-                strQuery += "'" + diary.getId().toString() + "'";
+        strQuery += "'" + diary.getId().toString() + "'";
 
-            strQuery += ") ORDER BY timestamp DESC";
+        strQuery += ") ORDER BY timestamp DESC";
 
-            Query q = em.createQuery(strQuery);
-            diarycomments = (List<DiaryComment>) q.getResultList();
+        Query q = em.createQuery(strQuery);
+        diarycomments = (List<DiaryComment>) q.getResultList();
 
-            if(diarycomments.size() ==1) {
-                return diarycomments;
-            }
-            return null;
+        if(diarycomments.size() ==1) {
+            return diarycomments;
+        }
+        return null;
 
     }
 }

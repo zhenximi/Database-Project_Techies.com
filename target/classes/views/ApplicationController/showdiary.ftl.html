@@ -27,7 +27,17 @@
                             </#if>
                         </#list>
                     </div>
-
+                    <div class="panel-footer">
+                        <form method="POST" action="/diary/comment">
+                            <input type="hidden" name="diary" value="${diary.id}">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Write a comment..." name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 

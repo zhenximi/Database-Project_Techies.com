@@ -1,91 +1,139 @@
-<#import "../layout/defaultLayout.ftl.html" as layout> 
-<@layout.myLayout "Home page">    
+<#import "../layout/defaultLayout.ftl.html" as layout>
+    <@layout.myLayout "Home page">
 
-<div class="panel panel-primary panel-shadow">
-    <div class="panel-body">
-        <img class="img-responsive img-circle center-block" src="/assets/img/general/${target.id}.jpg" alt="Profile picture">
-        <h2 class="text-center">
-            ${target.full_name}
-        </h2>
-        <h6 class="text-center">
-            ${target.status}
-        </h6>
-        <nav>
-            <ul class="pager">
-                <#if relation.relation_type == 3>
-                <li><a href="/friends/add/${relation.user_b.username}">Send request</a></li>
-                </#if>
-                <#if relation.relation_type == 1 && disable_add == false>
-                <li><a href="/friends/accept/${relation.id}">Accept request</a></li>
-                </#if>
-                <li><a href="#">Block</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
-
-<#if relation.relation_type == 2>
-<#list posts as post>
-<div class="panel panel-primary">
-    <div class="panel-body">
-        <div class="media">
-            <div class="media-left">
-                <a href="#">
-                    <img class="media-object img-rounded avatar-64" src="/assets/img/general/${post.author.id}.jpg">
-                </a>
-            </div>
-            <div class="media-body">
-                <h4>${post.author.full_name}</h4>
-                
-                <p>${post.content}</p>
-                
-                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${post.timestamp}
-                <#list comments as comment>
-                    <#if comment.post_id == post.id>
-                        <div class="media" id="comment_${comment.id}">
-                            <div class="media-left media-middle">
-                                <a href="/profile/view/${comment.author.username}">
-                                    <img class="media-object img-rounded avatar-48" src="/assets/img/general/${comment.author.id}.jpg">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4>${comment.author.full_name}</h4>
-                                <p>${comment.content}</p>
-                            </div>
-                        </div>
+    <div class="panel panel-primary panel-shadow">
+        <div class="panel-body">
+            <a href="/profile/view"><img class="img-responsive img-circle center-block" src="/assets/img/general/icon-profile.png" alt="Profile picture"></a>
+            <h2 class="text-center">
+                ${target.full_name}
+            </h2>
+            <h6 class="text-center">
+                ${target.status}
+            </h6>
+            <nav>
+                <ul class="pager">
+                    <#if relation.relation_type == 3>
+                        <li><a href="/friends/add/${relation.user_b.username}">Send request</a></li>
                     </#if>
-                </#list>
-            </div>
+                    <#if relation.relation_type == 1 && disable_add == false>
+                        <li><a href="/friends/accept/${relation.id}">Accept request</a></li>
+                    </#if>
+                    <li><a href="#">Block</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
-    <div class="panel-footer">
-        <form method="POST" action="/post/comment">
-            <input type="hidden" name="post" value="${post.id}">
-            <input type="hidden" name="returnto" value="/profile/view/${relation.user_b.username}">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Write a comment..." name="content">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                </span>
-            </div>
-        </form>
-    </div>
-</div>
-</#list>
-</#if>
-
     <div class="panel panel-primary">
         <div class="panel-body">
             <div class="media">
                 <div class="media-body">
                     <h4>${profile.birthday}</h4>
                     <h3>${profile.gender}</h3>
-
-
                 </div>
             </div>
         </div>
     </div>
+    <#if relation.relation_type == 2>
+        <#list posts as post>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="/profile">
+                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/icon-profile.png">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4>${post.author.full_name}</h4>
+
+                            <p>${post.content}</p>
+
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${post.timestamp}
+                            <#list comments as comment>
+                                <#if comment.post_id == post.id>
+                                    <div class="media" id="comment_${comment.id}">
+                                        <div class="media-left media-middle">
+                                            <a href="/profile/view/${comment.author.username}">
+                                                <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>${comment.author.full_name}</h4>
+                                            <p>${comment.content}</p>
+                                        </div>
+                                    </div>
+                                </#if>
+                            </#list>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <form method="POST" action="/post/comment">
+                        <input type="hidden" name="post" value="${post.id}">
+                        <input type="hidden" name="returnto" value="/profile/view/${relation.user_b.username}">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Write a comment..." name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </#list>
+        <#list diary as diary>
+            <div class="panel panel-primary" style="padding: 1%;">
+                <div class="panel-body" style="display: inline-block; padding: 10px;">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="/profile/view/${diary.author.id}">
+                                <img class="media-object img-rounded avatar-64" src="/assets/img/general/icon-profile.png">
+                            </a>
+                            <h4>${diary.author.full_name}</h4>
+                        </div>
+                        <div class="media-middle" style="text-align: left;">
+                            <a href="/diary/${diary.id}">
+                                <h3>${diary.title}</h3>
+                            </a>
+                            <h4>${diary.content}</h4>
+
+
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diary.timestamp}
+                            <#list diarycomments as diarycomment>
+                                <#if diarycomment.diary_id == diary.id>
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <a href="/profile/view/${diarycomment.author.username}">
+                                                <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>${diarycomment.author.full_name}</h4>
+                                            <p>${diarycomment.content}</p>
+                                        </div>
+                                    </div>
+                                </#if>
+                            </#list>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <form method="POST" action="/diary/comment">
+                        <input type="hidden" name="diary" value="${diary.id}">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Write a comment..." name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </#list>
+    </#if>
+
+
 
 
 </@layout.myLayout>

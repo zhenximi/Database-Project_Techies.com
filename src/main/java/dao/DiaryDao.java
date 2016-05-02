@@ -60,5 +60,20 @@ public class DiaryDao {
         //System.out.println("+++++++++++++++++++++++++++search result: " + result.size());
         return result;
     }
+    public List<Diary> getDiaryFromUsers(UserTable userlist) {
+        EntityManager em = EntityManagerProvider.get();
+        List<Diary> result = new ArrayList<>();
+
+        String strQuery = "SELECT x FROM Diary x WHERE user_id IN (";
+
+        strQuery += "'" + userlist.getId() + "'";
+
+        strQuery += ") ORDER BY timestamp DESC";
+        // Get all diary from user's relatives posts
+        Query q = em.createQuery(strQuery);
+        result = (List<Diary>) q.getResultList();
+
+        return result;
+    }
 
 }

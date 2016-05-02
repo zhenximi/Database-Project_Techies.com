@@ -42,7 +42,7 @@
     <div class="panel-body">
         <div class="media">
             <div class="media-left">
-                <a href="/profile/view/${post.author.username}">
+                <a href="/profile/view/${post.author.id}">
                     <img class="media-object img-rounded avatar-64" src="/assets/img/general/${post.author.id}.jpg">
                 </a>
             </div>
@@ -92,6 +92,12 @@
         <div class="panel panel-primary" style="padding: 1%;">
             <div class="panel-body" style="display: inline-block; padding: 10px;">
                 <div class="media">
+                    <div class="media-left">
+                        <a href="/profile/view/${diary.author.id}">
+                            <img class="media-object img-rounded avatar-64" src="/assets/img/general/icon-profile.png">
+                        </a>
+                        <h4>${diary.author.full_name}</h4>
+                    </div>
                     <div class="media-middle" style="text-align: left;">
                         <a href="/diary/${diary.id}">
                             <h3>${diary.title}</h3>
@@ -100,12 +106,36 @@
 
 
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diary.timestamp}
-
+                        <#list diarycomments as diarycomment>
+                            <#if diarycomment.diary_id == diary.id>
+                                <div class="media">
+                                    <div class="media-left media-middle">
+                                        <a href="/profile/view/${diarycomment.author.username}">
+                                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>${diarycomment.author.full_name}</h4>
+                                        <p>${diarycomment.content}</p>
+                                    </div>
+                                </div>
+                            </#if>
+                        </#list>
                     </div>
 
                 </div>
             </div>
-
+            <div class="panel-footer">
+                <form method="POST" action="/diary/comment">
+                    <input type="hidden" name="diary" value="${diary.id}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Write a comment..." name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                    </div>
+                </form>
+            </div>
         </div>
     </#list>
 

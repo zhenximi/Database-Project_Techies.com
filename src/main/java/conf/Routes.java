@@ -67,7 +67,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/profile_create").with(ApplicationController.class, "profile_create");
 
         router.GET().route("/self_profile_view").with(ApplicationController.class, "self_profile_view");
-
+        router.POST().route("/diary/comment").with(ApplicationController.class, "post_diary_comment");
 
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page
