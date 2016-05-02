@@ -59,9 +59,9 @@ html {
 
 @media only screen and (min-height: 800px) {
 
-.enterprise-signup, .login-form, .password-reset-form, .request-reset-form, .signup-form {
-    padding: 80px 100px;
-}
+    .enterprise-signup, .login-form, .password-reset-form, .request-reset-form, .signup-form {
+        padding: 80px 100px;
+    }
 
 }
 .enterprise-signup, .login-form, .password-reset-form, .request-reset-form, .signup-form {
@@ -72,21 +72,20 @@ html {
 
 header.circle-logo {
     border-radius: 100%;
-    border: solid 1px #9400FF;
+    border: solid 5px #9400FF;
     margin: 0 auto 55px;
     height: 102px;
     width: 102px;
 }
 
 header.circle-logo span {
-    background-repeat: no-repeat;
+    background: url(/assets/img/general/t.png) no-repeat;
     overflow: hidden;
     display: block;
-    background-image: url(/assets/img/general/t.png);
     height: 80px;
     position: relative;
-    top: 19px;
-    left: 31px;
+    top: 13px;
+    left: 27px;
     background-size: contain;
 }
 
@@ -290,6 +289,19 @@ header.circle-logo span {
     text-transform: uppercase;
 }
 
-.modal-body {
-    padding: 110px;
+
+#signupModal .modal-header {
+    border: 0;
+}
+
+.input-group-addon {
+    background-color: #ffffff;
+    border: none;
+    padding: 0px 8px 0 0;
+    font-size: 18px;
+}
+
+.input-group .bar {
+    top: 26px;
+    z-index: 10;
 }

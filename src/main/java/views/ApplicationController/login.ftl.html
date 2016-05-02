@@ -1,42 +1,128 @@
 <#import "../layout/login-layout.ftl.html" as layout>
     <@layout.myLayout "Techies">
-    <div class="form login-form">
-        <header class="circle-logo techies">
-            <span></span>
-        </header>
-        <div class="form-wrap clearfix">
-            <p class="login-title">Log Into Your Techies</p>
-            <form method="post" action="/login">
-                <div class="input-layout">
-                    <input type="text" required="" class="cleanup validate-empty" name="email" id="email" value="">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Email</label>
+    <div id="overlay" class="overlay-no-img">
+        <div class="content">
+            <div class="form login-form">
+                <header class="circle-logo techies">
+                    <span></span>
+                </header>
+                <div class="form-wrap clearfix">
+                    <p class="login-title">Log Into Your Techies</p>
+                    <form method="post" action="/login">
+                        <div class="input-layout">
+                            <input type="text" required="" class="cleanup validate-empty" name="email" id="email"
+                                   value="">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Email</label>
 
 
-                    <div class="alert alert-error alert-email" style="display: none;">
-                        Oops! Email is required.
-                    </div>
+                            <div class="alert alert-error alert-email" style="display: none;">
+                                Oops! Email is required.
+                            </div>
+                        </div>
+                        <div class="input-layout">
+                            <input type="password" required="" class="validate-empty" name="secret" id="password">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Password</label>
+                            <div class="alert alert-error alert-password" style="display: none;">
+                                Oops! Password is required.
+                            </div>
+                        </div>
+                        <footer>
+                            <button type="submit" class="primary button">Login</button>
+                            <button type="button" class="secondary button" data-toggle="modal"
+                                    data-target="#signupModal">
+                                SIGN UP
+                            </button>
+                        </footer>
+                    </form>
+
                 </div>
-                <div class="input-layout">
-                    <input type="password" required="" class="validate-empty" name="secret" id="password">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Password</label>
-                    <div class="alert alert-error alert-password" style="display: none;">
-                        Oops! Password is required.
-                    </div>
-                </div>
-                <footer>
-                    <button type="submit" class="primary button">Login</button>
-                    <button type="button" class="secondary button" data-toggle="modal" data-target="#signupModal">
-                        SIGN UP
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <!-- Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                </footer>
-            </form>
+                </div>
+                <div class="modal-body">
+                    <div class="form login-form ">
+                        <header class="circle-logo techies">
+                            <span></span>
+                        </header>
+                        <div class="form-wrap clearfix">
 
+                            <form id="form_register" method="post" action="/register">
+                                <p class="login-title">Welcome to techies community!</p>
+                                <div class="form-group js_username">
+                                    <div class="input-group input-layout">
+                                        <span class="input-group-addon" id="basic-addon1">http://techies.com/</span>
+                                        <input type="text" class="cleanup form-control" placeholder="User Name" name="username" aria-describedby="basic-addon1">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="alert alert-error alert-email" style="display: none;">
+                                            Oops! User Name is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group js_fullname input-layout">
+                                    <input type="text"  class="form-control" name="fullname">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Full Name</label>
+                                    <div class="alert alert-error alert-email" style="display: none;">
+                                        Oops! Full Name is required.
+                                    </div>
+                                </div>
+                                <div class="form-group js_email input-layout">
+                                    <input type="text" class="form-control" name="email">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Email</label>
+                                    <div class="alert alert-error alert-email" style="display: none;">
+                                        Oops! Email is required.
+                                    </div>
+                                </div>
+                                <div class="form-group js_password1 input-layout">
+                                    <input type="password" class="form-control" name="secret">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Password</label>
+                                    <div class="alert alert-error alert-email" style="display: none;">
+                                        Oops! Password is required.
+                                    </div>
+                                </div>
+                                <div class="form-group js_password2 input-layout">
+                                    <input type="password"  class="form-control">
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Confirm Password</label>
+                                    <div class="alert alert-error alert-email" style="display: none;">
+                                        Oops! Full Name is required.
+                                    </div>
+                                </div>
+                                <div class="checkbox js_checkbox">
+                                    <label>
+                                        <input type="checkbox"> I accept the term and conditions
+                                    </label>
+                                </div>
+                                <footer>
+                                    <button type="submit" class="primary button js_submit" disabled="true" value="submit">Sign Up</button>
+                                    <footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 
 </@layout.myLayout>
