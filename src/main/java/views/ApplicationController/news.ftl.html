@@ -6,34 +6,43 @@
         <form method="POST" action="/post/create">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="What's on your mind?" name="content">
-                <select name="permission">
+                <span class="input-group-addon">
+                    <select name="permission">
                     <option value="PUBLIC">everyone</option>
                     <option value="FRIENDS">friends</option>
                     <option value="FOF">friends of friends</option>
                     <option value="PRIVATE">myself</option>
                 </select>
+                </span>
                 <span class="input-group-btn">
-
-                    <a href="/diary_create_view">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></button>
-                    </a>
                         <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
                 </span>
             </div>
         </form>
-
-        <form method="POST" enctype="multipart/form-data" action="/uploadPostImg">
-            <div class="input-group">
-                <input class="glyphicon glyphicon-camera"  type="file" name="postImg">
-                <select name="permission">
-                    <option value="PUBLIC">everyone</option>
-                    <option value="FRIENDS">friends</option>
-                    <option value="FOF">friends of friends</option>
-                    <option value="PRIVATE">myself</option>
-                </select>
-                <input type="submit" value="post image">
+        <div class="post-box">
+            <div class="photo">
+                <form method="POST" enctype="multipart/form-data" action="/uploadPostImg">
+                    <div class="input-group">
+                        <input class="hidden"  id="upload-file" type="file" name="postImg">
+                        <button class="btn glyphicon glyphicon-picture upload-picture" onclick="document.getElementById('upload-file').click();"></button>
+                        <span class="input-group-addon">
+                            <select name="permission">
+                                <option value="PUBLIC">everyone</option>
+                                <option value="FRIENDS">friends</option>
+                                <option value="FOF">friends of friends</option>
+                                <option value="PRIVATE">myself</option>
+                            </select>
+                        </span>
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" value="post image"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="diary post-box"><a class="btn btn-default create-diary" href="/diary_create_view" ><span class="glyphicon glyphicon-book" aria-hidden="true"></span></a></div>
+        </div>
+
+
     </div>
 </div>
 

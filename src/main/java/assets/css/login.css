@@ -126,7 +126,7 @@ header.circle-logo span {
     -webkit-transition: .2s ease all;
     transition: .2s ease all
 }
-.input-layout input[type=text], .input-layout input[type=password] {
+.input-layout input[type=text], .input-layout input[type=password], .input-layout input[type=email] {
     font-weight: 400;
     font-size: 18px;
     color: #1E2431;
@@ -140,7 +140,7 @@ header.circle-logo span {
     transition: none;
     border-radius: 0
 }
-.input-layout input[type=text]:focus~label, .input-layout input[type=text]:valid~label, .input-layout input[type=password]:focus~label, .input-layout input[type=password]:valid~label {
+.input-layout input[type=text]:focus~label, .input-layout input[type=text]:valid~label, .input-layout input[type=email]:focus~label, .input-layout input[type=email]:valid~label,  .input-layout input[type=password]:focus~label, .input-layout input[type=password]:valid~label {
     top: -30px;
     color: #A2AABD;
     opacity: 1;
@@ -152,10 +152,10 @@ header.circle-logo span {
     color: #FF6291;
     font-weight: 400
 }
-.input-layout input[type=text]:focus:required:invalid:focus, .input-layout input[type=password]:focus:required:invalid:focus {
+.input-layout input[type=text]:focus:required:invalid:focus, .input-layout input[type=email]:focus:required:invalid:focus,  .input-layout input[type=password]:focus:required:invalid:focus {
     box-shadow: none
 }
-.input-layout input[type=text].error, .input-layout input[type=password].error {
+.input-layout input[type=text].error, .input-layout input[type=emali].error, .input-layout input[type=password].error {
     border-bottom-color: #DD2B00;
     border-bottom-width: 2px;
     border-radius: 0
@@ -172,7 +172,7 @@ header.circle-logo span {
     border: none;
     text-transform: none
 }
-.input-layout input[type=text]:active, .input-layout input[type=text]:focus {
+.input-layout input[type=text]:active, .input-layout input[type=email]:active, .input-layout input[type=text]:focus {
     outline: 0;
     padding-left: 0;
     text-transform: none;
