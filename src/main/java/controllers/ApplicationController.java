@@ -173,7 +173,7 @@ public class ApplicationController {
                 User_session uSession = new User_session(canLogin);
                 em.persist(uSession);
                 context.getSession().put(Globals.CookieSession, uSession.getId());
-                Profile profile = new Profile(uSession.getUser(), "This guy is lazy, he did not wirte anything!"," "," ");
+                Profile profile = new Profile(uSession.getUser(), "This guy is lazy, he did not wirte anything!"," "," "," "," "," ");
                 em.persist(profile);
                 return Results.redirect(Globals.PathProfile);
             } else {
@@ -477,27 +477,41 @@ public class ApplicationController {
 
     @Transactional
     @FilterWith(LoginFilter.class)
-    public Result profile_create (Context context, @Param("birthday") String birthday, @Param("gender")String gender, @Param("hobby") String hobby) {
+    public Result profile_create (Context context, @Param("birthday") String birthday, @Param("gender")String gender, @Param("hobby") String hobby,@Param("marital_status")String marital_status, @Param("work_place")String work_place,@Param("helper")String helper) {
 
         Result html = Results.html();
 
         Session session = context.getSession();
         EntityManager em = EntityManagerProvider.get();
         UserTable actualUser = userTableDao.getUserFromSession(context);
-        Profile newProfile= new Profile(actualUser,birthday,gender,hobby);
-        em.persist(newProfile);
 
+        Profile newProfile= new Profile(actualUser,birthday,gender,hobby,marital_status,work_place,helper);
 
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
 
-        Profile profile = profileDao.getProfileFromUser(newProfile.getId());
+
+        if(profileDao.getProfileFromProfile(actualUser)!=null) {
+            profileDao.getProfileFromProfile(actualUser).setAuthor(actualUser);
+            profileDao.getProfileFromProfile(actualUser).setBirthday(birthday);
+            profileDao.getProfileFromProfile(actualUser).setGender(gender);
+            profileDao.getProfileFromProfile(actualUser).setHobby(hobby);
+            profileDao.getProfileFromProfile(actualUser).setMarital_status(marital_status);
+            profileDao.getProfileFromProfile(actualUser).setHelper(helper);
+            profileDao.getProfileFromProfile(actualUser).setWork_place(work_place);
+            em.persist(profileDao.getProfileFromProfile(actualUser));
+        }
+        else{
+            em.persist(newProfile);
+        }
 
         html.render("user", actualUser);
         html.render("friends", mutualFriends);
-        html.render("profile",profile);
+        html.render("profile",newProfile);
 
 
         return html;
+
+
     }
     public Result self_profile_view(Context context) {
         // Initial declarations
