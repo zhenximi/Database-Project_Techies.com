@@ -17,7 +17,7 @@
                     <div class="media-middle" style="text-align: left;">
                         <h1>${diary.title}</h1>
                         <h4>${diary.content}</h4>
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diary.timestamp}
+
                         <#list diarycomments as diarycomment>
                             <#if diarycomment.diary_id == diary.id>
                                 <div class="media">
@@ -27,6 +27,7 @@
                                     </div>
                                     <div class="media-body">
                                         <h4>${diarycomment.author.full_name}</h4>
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diarycomment.timestamp}
                                         <p>${diarycomment.content}</p>
                                     </div>
                                 </div>

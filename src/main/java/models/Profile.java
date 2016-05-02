@@ -15,15 +15,22 @@ public class Profile {
     private String birthday;
     private String gender;
     private String hobby;
+    private String marital_status;
+    private String work_place;
+    //private String read_me;
+    private String helper;
     //private String personal;
 
 
-    public Profile(UserTable author, String birthday, String gender, String hobby){
+    public Profile(UserTable author, String birthday, String gender, String hobby, String marital_status, String work_place,  String helper){
         this.author=author;
         this.birthday=birthday;
         this.gender=gender;
         this.hobby=hobby;
-        //this.personal=personal;
+        this.marital_status=marital_status;
+        this.work_place=work_place;
+        //this.read_me=read_me;
+        this.helper=helper;
     }
     public Profile(){}
 
@@ -84,12 +91,32 @@ public class Profile {
         this.hobby = hobby;
     }
 
-   /* public String getAboutme(String aboutme) {
-        return aboutme;
+    public String getMarital_status() {
+        return marital_status;
     }
 
-    public void setAboutme(String aboutme) {
-        this.aboutme=aboutme;
-    }*/
+    public void setMarital_status(String marital_status) {
+        this.marital_status=marital_status;
+    }
+
+    public String getWork_place(){
+        return work_place;
+    }
+    public void setWork_place(String work_place){ this.work_place=work_place; }
+
+//    public String getRead_me(){
+//        return read_me;
+//    }
+//    public void setRead_me(String read_me){ this.read_me=read_me; }
+//
+
+    public String getHelper(){
+        return helper;
+    }
+
+
+    public void setHelper(String helper) {
+        this.helper = helper;
+    }
 
 }
