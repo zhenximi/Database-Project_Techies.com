@@ -55,6 +55,7 @@ public class ApplicationController {
     @Inject DiaryDao diaryDao;
     @Inject MailController mailController;
     @Inject ProfileDao profileDao;
+    @Inject DiaryCommentDao diaryComment;
 
     @FilterWith(LoginFilter.class)
     public Result index(Context context) {
@@ -83,6 +84,7 @@ public class ApplicationController {
         userTempList.add(actualUser);
         List<Post> posts = new ArrayList<>();
         List<Post> userPosts = postDao.getPostsFromUsers(userTempList);
+
         // Get mutual friends
         //TODO: get mutual friend's post, reveal if is not "PRIVATE(3)" otherwise not reveal
         if(mutualFriends.size() != 0) {
@@ -108,10 +110,13 @@ public class ApplicationController {
         html.render("comments", comments);
         html.render("friends", mutualFriends);
         List<Diary> diaries = new ArrayList<>();
+        List<DiaryComment> diaryComments=new ArrayList<>();
         if(mutualFriends.size() != 0) {
             diaries = diaryDao.getDiaryFromUsers(mutualFriends);
+            diaryComments=diaryComment.getCommentsByPosts(diaries);
         }
             html.render("diarys", diaries);
+            html.render("diarycomments",diaryComments);
         return html;
     }
 
@@ -297,14 +302,20 @@ public class ApplicationController {
         // Initial declarations
         Result html = Results.html();
 
-       UserTable actualUser = userTableDao.getUserFromSession(context);
-       UserTable targetUser = userTableDao.getUserFromUserid(userid);
+        UserTable actualUser = userTableDao.getUserFromSession(context);
+        UserTable targetUser = userTableDao.getUserFromUserid(userid);
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
         Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
         Profile profile= profileDao.getProfileFromProfile(targetUser);
+
+        List<Diary> diary = diaryDao.getDiaryFromUsers(targetUser);
+        List<DiaryComment> diaryComments=diaryComment.getCommentsByPosts(diary);
+        html.render("diary", diary);
+
+        html.render("diarycomments",diaryComments);
         boolean disable_add = false;
 
-       if(relationship != null) {
+        if(relationship != null) {
             if (relationship.getRelation_type() == RelationType.Friends.ordinal() || relationship.getRelation_type() == RelationType.Request.ordinal()) {
                 html.render("relation", relationship);
                 disable_add = (relationship.getRelation_type() == RelationType.Request.ordinal()) && Objects.equals(relationship.getUser_a().getId(), actualUser.getId());
@@ -382,6 +393,7 @@ public class ApplicationController {
         Post post = postDao.getPostFromSearchResult(postid);
         //List<Comment> comments
         List<Comment> comments = commentDao.getCommentsBySearchresult(post);
+
         html.render("comments", comments);
         html.render("user", actualUser);
         html.render("post", post);
@@ -400,10 +412,11 @@ public class ApplicationController {
         //Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
 
         Diary diary = diaryDao.getDiaryFromSearchResult(diary_id);
-
+        List<DiaryComment> diaryComments=diaryComment.getCommentsBydiary(diary);
         html.render("diary", diary);
-        html.render("user", actualUser);
 
+        html.render("diarycomments",diaryComments);
+        html.render("user", actualUser);
         html.render("friends", mutualFriends);
 
         return html;
@@ -424,6 +437,7 @@ public class ApplicationController {
         em.persist(newDiary);
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
         Diary diary = diaryDao.getDiaryFromSearchResult(newDiary.getId());
+
 
 
 
@@ -494,6 +508,21 @@ public class ApplicationController {
 
         return html;
     }
+    @Transactional
+    @FilterWith(LoginFilter.class)
+    public Result post_diary_comment (@Param("diary") String Post, @Param("content") String Content, @Param("returnto") String returnto, Context context) {
+        Session session = context.getSession();
+        EntityManager em = EntityManagerProvider.get();
 
+        UserTable user = userTableDao.getUserFromSession(context);
+
+        DiaryComment newComment = new DiaryComment(user, Long.valueOf(Post), Content, new Timestamp(new Date().getTime()));
+        em.persist(newComment);
+
+        if(returnto == null)
+            return Results.redirect(Globals.PathRoot);
+        else
+            return Results.redirect(returnto + "#comment_" + newComment.getId());
+    }
 
 }
