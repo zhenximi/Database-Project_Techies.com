@@ -33,6 +33,27 @@
     background-repeat: no-repeat;
 }
 
+.half-width {
+    width: 49%;
+    display: inline-block;
+}
+
+.post-box {
+    padding: 10px 0;
+}
+
+
+.upload-picture {
+    width: 100%;
+}
+
+.create-diary {
+    width: 100%;
+}
+
+.header-theme {
+    background-image: linear-gradient(to bottom,#E3BBFF 0,#D191FF 100%);
+}
 
 .m-pulse {
     position: absolute;
